@@ -1,0 +1,8 @@
+2 játékos van egymás ellen, le kell lőni a másikat. A barna dobozban fegyver van, a zöld doboz életet tölt vissza. A "MapMaker" menüpont alatt lehet új pályát csinálni, amit el lehet nevezni, és enterrel elmenteni. A "Select Map" menüpontban lehet kiválasztani a megfelelő pályát. 
+Irányítás:
+piros játékos:
+	mozgás: W,A,S,D
+	lövés: T
+kék játékos:
+	mozgás: nyilak
+	lövés: enter
