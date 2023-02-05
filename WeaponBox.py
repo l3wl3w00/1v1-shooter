@@ -3,7 +3,6 @@ class WeaponBox(Collectible):
     def __init__(self,game,pos, weapon):
         super().__init__(game,pos,None,(165,42,42))
         self.weapon = weapon
-        print("box weapon type:",type(self.weapon))
 
     def tick(self):
         for player in self.game.players:

@@ -119,7 +119,6 @@ class Block:
         self.topAdjust()
         self.bottomAdjust()
         if self.drag:
-            #self.pos.center = self.game.handler.relativeMx,self.game.handler.relativeMy#mx + self.game.camera.pos.x,my + self.game.camera.pos.y
             self.pos.x = self.game.handler.relativeMx - self.xDiff
             self.pos.y = self.game.handler.relativeMy - self.yDiff
 

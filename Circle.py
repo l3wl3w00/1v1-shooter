@@ -4,10 +4,8 @@ class Circle:
         self.x = x
         self.y = y
         self.r = r
-    def collideRect(self,rect):#rleft, rtop, width, height,   # rectangle definition
-              #center_x, center_y, radius):  # circle definition
+    def collideRect(self,rect):
         """ Detect collision between a rectangle and circle. """
-        #hitCircle = Circle(self.pos.x+self.w/2,self.pos.y+self.h/2,self.range)
         rleft = rect.x
         rtop = rect.y
         width = rect.w

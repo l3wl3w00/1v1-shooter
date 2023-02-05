@@ -25,8 +25,6 @@ class Collectible:
             self.age += 1
             for player in self.game.players:
                 if player.pos.colliderect(self.pos):
-                    print("exist False")
-                    print("player id:",player.id)
                     self.exists = False
                     self.effect(player)
             if self.age >= self.lifetime:

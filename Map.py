@@ -36,7 +36,6 @@ class Map:
             maps.write("_")
             for collSpawn in self.collSpawners:
                 maps.write(f"|{collSpawn.pos.x} {collSpawn.pos.y} {collSpawn.pos.w} {collSpawn.pos.h}")
-                #maps.write(f" {collSpawn.coll.pos.x} {collSpawn.coll.pos.y} {collSpawn.coll.pos.w} {collSpawn.coll.pos.h}")
                 maps.write(f" {collSpawn.drag} {collSpawn.frequency/self.game.fps} ")
                 if isinstance(collSpawn,WeaponBoxSpawner):
                     maps.write("weaponbox")
@@ -46,8 +45,6 @@ class Map:
                     maps.write("speed")
                 elif isinstance(collSpawn.coll,ShieldCollectible):
                     maps.write("shield")
-                else:
-                    print("type:",type(collSpawn.coll))
             maps.write("_")
             for playerSpawn in self.playerSpawns:
                 maps.write(f"|{playerSpawn.pos.x} {playerSpawn.pos.y} {playerSpawn.pos.w} {playerSpawn.pos.h}")

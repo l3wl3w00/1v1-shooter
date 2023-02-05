@@ -23,19 +23,6 @@ class EventHandler:
         self.my = 0
         self.relativeMx = 0
         self.relativeMy = 0
-        # self.aDown = False
-        # self.sDown = False
-        # self.dDown = False
-        # self.leftDown = False
-        # self.rightDown = False
-        # self.downDown = False
-        # self.wUp = False
-        # self.aUp = False
-        # self.sUp = False
-        # self.dUp = False
-        # self.tUp = False
-        # self.wHold = False
-        # self.sHold = False
     def setAllFalse(self):
         self.mouseUp = False
         self.mouseDown = False

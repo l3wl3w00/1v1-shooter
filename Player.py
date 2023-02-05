@@ -83,14 +83,12 @@ class Player:
             s.velFromOther.y = 0
     def getVel(self):
         return self.velFromControl + self.velFromOther
-                #+ self.velFromExplosion
     def getBottom(self):
         return self.bottomleft,self.bottomright
     
     def move(self):
         
         self.pos.move_ip(self.getVel().x,self.getVel().y)
-        #self.pos.move_ip(self.velFromControl,0)
     
     def hitByExplosion(self,explosion):
         self.changeHp(-explosion.dmg)
@@ -108,12 +106,8 @@ class Player:
     def collideAnyBlock(self):
         res = False
         for block in self.game.map.blocks:
-            # if self.id == 1:
-            #     print("block pos:", block.extend())
-            #     print("self.pos:",self.pos)
             if self.pos.colliderect(block.extend(2)):
                 res = True
-                # print("collide")
         return res
 
     def nextFrameCollide(self):
@@ -130,7 +124,6 @@ class Player:
                     # if the current pos is above the block, but the next is inside
                     if self.pos.bottom < block.pos.y and newRect.bottom >= block.pos.y:
                         self.state.inAir = False
-                        print("not in air")
                         self.jumpCount = 0
                         self.pos.y = block.pos.y-self.pos.h-1
                         self.stop(x = False)
@@ -242,7 +235,6 @@ class Player:
         if self.exists:
             
             if not self.collideAnyBlock():
-                print("in air")
                 self.state.inAir = True
             if self.state.inAir:
                 self.airTime += 1
@@ -260,7 +252,6 @@ class Player:
                         bullet.hitEffect(self)
             self.nextFrameCollide()
             if self.state.inAir:
-                print("inAir:", self.state.inAir)
                 fluidRes = self.game.fluidRes.x*self.velFromOther.x
                 self.velFromOther.x -= fluidRes
             self.move()

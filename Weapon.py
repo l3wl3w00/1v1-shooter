@@ -16,6 +16,3 @@ class Weapon:
             surface.blit(pygame.transform.flip(self.img,True,False),(renderpos.x-30,renderpos.y-10))
         else:
             surface.blit(self.img,(renderpos.x-30,renderpos.y-10))
-    # def shoot(self,pos):
-    #     pass
-    

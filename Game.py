@@ -55,22 +55,16 @@ class Game:
         #self.win = pygame.display.set_mode((1280,720))
         self.win = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.w, self.h = pygame.display.get_surface().get_size()
-        #self.camerapos = (0,0)
         self.middle = Vector(self.w/2,self.h/2)
         
         self.gravity = Vector(0,60/self.fps)
         self.fluidRes = Vector(0.03,0)
         self.weaponSpawnTime = 10*self.fps
-        #GrenadeLauncher,Pistol,Lazer,AK,RocketLauncher
         self.weaponTypes = [GrenadeLauncher,Lazer,AK,RocketLauncher,Shotgun]
         self.playerSpawners = [
             PlayerSpawner(Rect(800,300,44,83),0,self),
             PlayerSpawner(Rect(100,300,44,83),1,self)
         ]
-        # self.blocks = [
-        #     Block(pygame.Rect(-5000,541,10000,100),self),Block(pygame.Rect(300,400,100,300),self),
-        #     Block(pygame.Rect(500,300,600,100),self),Block(pygame.Rect(500,150,100,40),self,True,True,False,True)
-        # ]
         blocks = [
             Block(pygame.Rect(-5000,541,10000,100),self),Block(pygame.Rect(300,400,100,300),self),
             Block(pygame.Rect(500,300,600,100),self),Block(pygame.Rect(500,150,100,40),self,True,True,False,True)
@@ -85,15 +79,10 @@ class Game:
         self.loadimages()
         self.initMenus()
         self.initGame()
-        
-        
-    # def renderText(surface,x,y,text, font, color = (0,0,0)):
-    #     text = font.render(text, True, color) 
-    #     surface.blit(text,(x,y))
+   
     def initMapSelectMenu(self):
         self.mapSelectMenu = Menu(self,[TextButton(Rect(self.w-200,self.h-100,150,40),"Back",self.toMenu)])
         for i,map in enumerate(self.maps):
-            print("map:",map.name)
             self.mapSelectMenu.buttons.append(
                 MapSelectButton(
                     self,Rect(100,100+i*100,200,40),map
@@ -172,7 +161,6 @@ class Game:
                 playerSpawns = []
                 for spawn in line[3][1:]:
                     spawn = spawn.split()
-                    print("spawn:",spawn)
                     newSpawn = PlayerSpawner(Rect(
                             int(spawn[0]),int(spawn[1]),
                             int(spawn[2]),int(spawn[3])
@@ -191,9 +179,7 @@ class Game:
         ]
         
         self.bullets = []
-        #self.collSpawners = []
         self.collectibles = []
-        #self.weaponBoxes = [None,None,None]
     def initMenus(self):
         buttons = [ 
             TextButton(Rect(100,100,150,40),"Play",self.toGame),
@@ -252,12 +238,9 @@ class Game:
         self.gameMenu = Menu(self,buttons3)
         self.initMapSelectMenu()
     def loadimages(self):
-        # self.platform1Img = loadImage("platform_nagy.png")
-        # self.tree = loadImage("tree.png")
-        # self.bgBlur = loadImage("bg_nagy_blur.jpg")
+
         self.bgImg = loadImage("bg_nagy.png",True)
         self.bgRect = self.bgImg.get_rect()
-        #self.plusImg = pygame.transform.scale(loadImage("Interface/plus.png",True), (70, 70))
         self.blockButtonImg = loadImage("Interface/newBlock.png",True)
         self.weaponBoxButtonImg = loadImage("Interface/weapon.png",True)
         self.healButtonImg = loadImage("Interface/heal.png",True)
@@ -279,7 +262,7 @@ class Game:
 
                         "idle":(loadImage("Player1/sprite_6.png"),)
 
-                        }#,loadImage("char1_punch_2.png"),loadImage("char1_down.png")]
+                        }
         self.char2Imgs = {
                         "arm":(loadImage("Player2/arm.png"),),
                         "moving":(loadImage("Player2/sprite_0.png"),loadImage("Player2/sprite_1.png"),loadImage("Player2/sprite_2.png"),
@@ -301,7 +284,6 @@ class Game:
     def quit(self):
         self.run = False
     def setMap(self,map):
-        print("map name:",map.name)
         self.map = map
     def healPlayer(self,player,hp = 25):
         if player.hp + hp > player.maxHp:
@@ -333,7 +315,6 @@ class Game:
     def newBlock(self,block):
         self.map.blocks.append(block)
     def newCollSpawner(self,spawner):
-        print("new spawner")
         self.map.collSpawners.append(spawner)
     def reset(self):
         self.camerapos = (0,0)
@@ -365,16 +346,11 @@ class Game:
                 
                 if event.key == pygame.K_w:
                     self.handler.wDown = True
-                    # self.handler.wHold = True
                 if event.key == pygame.K_a:
-                    # self.handler.aDown = True
                     self.handler.aHold = True
                 if event.key == pygame.K_s:
                     pass
-                    # self.handler.sDown = True
-                    # self.handler.sHold = True
                 if event.key == pygame.K_d:
-                    # self.handler.dDown = True
                     self.handler.dHold = True
                 if event.key == pygame.K_t:
                     self.handler.tDown = True
@@ -389,16 +365,11 @@ class Game:
 
                 if event.key == pygame.K_w:
                     self.handler.wUp = True
-                    # self.handler.wHold = False
                 if event.key == pygame.K_a:
-                    # self.handler.aUp = True
                     self.handler.aHold = False
                 if event.key == pygame.K_s:
                     pass
-                    # self.handler.sUp = True
-                    # self.handler.sHold = False
                 if event.key == pygame.K_d:
-                    # self.handler.dUp = True
                     self.handler.dHold = False
                 if event.key == pygame.K_t:
                     self.handler.tUp = True
@@ -407,7 +378,6 @@ class Game:
                     self.handler.spaceHold = False
         
     def playerEventHandle(self):
-        #if len(self.players) == 2:
         self.players[0].left = self.handler.aHold
         self.players[0].right = self.handler.dHold
         self.players[0].jump = self.handler.wDown
@@ -452,11 +422,6 @@ class Game:
             player.tick()
             
         self.setCameraPos()
-        # for bullet in self.bullets:
-        #     bullet.tick()
-        #     if not bullet.exists:
-        #         self.bullets.pop(self.bullets.index(bullet))
-        
         for coll in self.collectibles:
             coll.tick()
             if not coll.exists:
@@ -521,9 +486,6 @@ class Game:
             for bullet in self.bullets:
                 bullet.render(self.win)
             self.gameMenu.render()
-            # pygame.draw.rect(self.win,(255,0,0),(self.w//2 - self.camera.pos.x,self.h//2 - self.camera.pos.y,5,5))
-            # pygame.draw.rect(self.win,(255,255,255),(self.bgCamera.pos.x,self.bgCamera.pos.y,5,5))
-            # pygame.draw.rect(self.win,(0,255,255),(self.camera.pos.x,self.camera.pos.y,5,5))
         elif self.view == View.menu:
             self.mainMenu.render()
         elif self.view == View.mapSelect:

@@ -6,15 +6,10 @@ class Pellet(Bullet):
         self.vel = vel
         self.floatPos = [self.pos.x,self.pos.y]
     def move(self):
-        # print("move x:",self.vel.x," y:",self.vel.y)
         self.floatPos[0] += self.vel.x
         self.floatPos[1] += self.vel.y
         self.pos.x = self.floatPos[0]
         self.pos.y = self.floatPos[1]
-        # print("vel:",self.vel)
-        # print("self.pos before:",self.pos)
-        # self.pos.move_ip(self.vel.x,self.vel.y)
-        # print("self.pos after:",self.pos)
     def render(self, surface):
         renderpos = self.floatPos.copy()
         renderpos[0] -= self.game.camera.pos.x

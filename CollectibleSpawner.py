@@ -36,7 +36,6 @@ class CollectibleSpawner:
         for block in self.game.map.blocks:
             # make it 1 pixel wider cos it doesnt detect collision on the borders otherwise
             blockPos = block.pos.inflate(1,1)
-            #blockPos = block.pos
             if newRect.colliderect(blockPos):
                 if not block.topAccesable:
                     # if the current pos is above the block, but the next is inside

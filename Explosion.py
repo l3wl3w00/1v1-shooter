@@ -12,7 +12,6 @@ class Explosion(Bullet):
         renderpos.x -= self.game.camera.pos.x
         renderpos.y -= self.game.camera.pos.y
         pygame.draw.circle(surface,(255,0,0),(renderpos.x,renderpos.y),self.pos.r)
-        #pygame.draw.circle(surface,(0,0,0),(renderpos.x,renderpos.y),2)
     def hitEffect(self,player):
         player.hitByExplosion(self)
     def tick(self):
@@ -24,7 +23,6 @@ class Explosion(Bullet):
             if self.pos.collideRect(player.pos):
                 #if player not in self.damaged:
                 self.damagedPlayer = player
-                #    self.damaged.add(player)
         self.deactivate = True
                     
         if self.lifetime == 0:
