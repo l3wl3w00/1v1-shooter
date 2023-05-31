@@ -1,5 +1,5 @@
 # 1v1-shooter
-**HUNGARIAN:**
+## **HUNGARIAN:**
 
 Saját projekt, az első egyetemi félévem után készült, a kód elég csúnya.
 
@@ -9,7 +9,7 @@ A futtatáshoz a gyökér mappába navigálás után a `python main.py` utasít�
 
 A játék szabályai a szabályok.txt-ben találhatók
 
-**ENGLISH:**
+## **ENGLISH:**
 
 This project was made after my first semester, I know the code is messy.
 
